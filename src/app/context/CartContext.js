@@ -1,5 +1,7 @@
-// src/context/CartContext.js
-import React, { createContext, useState } from 'react';
+// src/app/context/CartContext.js
+'use client'; // Mark this as a Client Component
+
+import { createContext, useState } from 'react';
 
 export const CartContext = createContext();
 

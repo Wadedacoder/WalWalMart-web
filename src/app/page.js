@@ -1,9 +1,5 @@
-// src/App.js
-import React from 'react';
-import ProductList from '../components/ProductList';
-
-// import css
-import './app.css';
+// src/app/page.js
+import ProductList from './components/ProductList';
 
 const products = [
   { id: 1, name: 'Laptop', quantity: 10, price: 1200 },
@@ -11,13 +7,11 @@ const products = [
   { id: 3, name: 'Headphones', quantity: 20, price: 150 },
 ];
 
-function App() {
+export default function Home() {
   return (
-    <div className="App">
-      <h1>Ecommerce Store</h1>
+    <main>
+      <h1>Welcome to the Ecommerce Store</h1>
       <ProductList products={products} />
-    </div>
+    </main>
   );
 }
-
-export default App;
