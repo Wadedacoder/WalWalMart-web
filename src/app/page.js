@@ -1,24 +1,32 @@
 // src/app/page.js
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { fetchProducts } from '../services/api'; // Import the fetchProducts function
 import ProductList from './components/ProductList';
 
-const products = [
-  { id: 1, name: 'Laptop', quantity: 10, price: 1200 },
-  { id: 2, name: 'Smartphone', quantity: 15, price: 800 },
-  { id: 3, name: 'Headphones', quantity: 20, price: 150 },
-];
-
 export default function Home() {
+  const [products, setProducts] = useState([]);
   const router = useRouter();
 
   useEffect(() => {
-    // Check if the user is logged in (e.g., from localStorage or context)
-    const isLoggedIn = localStorage.getItem('isLoggedIn');
+    // Check if the user is logged in
+    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
     if (!isLoggedIn) {
       router.push('/login'); // Redirect to login if not logged in
+    } else {
+      // Fetch product data
+      const getProducts = async () => {
+        try {
+          const data = await fetchProducts();
+          setProducts(data); // Set the product data in state
+        } catch (error) {
+          console.error('Error fetching products:', error);
+        }
+      };
+
+      getProducts();
     }
   }, [router]);
 

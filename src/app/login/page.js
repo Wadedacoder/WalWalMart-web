@@ -1,8 +1,9 @@
 // src/app/login/page.js
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { login } from '../../services/api'; // Import the login function
 import styles from './login.module.css';
 
 export default function Login() {
@@ -11,25 +12,20 @@ export default function Login() {
   const [error, setError] = useState('');
   const router = useRouter();
 
-  // Redirect to home if already logged in
-  useEffect(() => {
-    const isLoggedIn = localStorage.getItem('isLoggedIn');
-    if (isLoggedIn) {
-      router.push('/');
-    }
-  }, [router]);
-
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
 
-    // Simple validation
-    if (username === 'user' && password === 'password') {
-      // Set authentication state
+    try {
+      // Call the login API
+      const data = await login(username, password);
+
+      // Save the token or user data to localStorage (or context)
       localStorage.setItem('isLoggedIn', 'true');
+      localStorage.setItem('token', data.token); // Assuming the API returns a token
 
       // Redirect to the home page after successful login
       router.push('/');
-    } else {
+    } catch (error) {
       setError('Invalid username or password');
     }
   };
