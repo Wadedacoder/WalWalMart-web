@@ -1,4 +1,8 @@
 // src/app/page.js
+'use client';
+
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import ProductList from './components/ProductList';
 
 const products = [
@@ -8,6 +12,16 @@ const products = [
 ];
 
 export default function Home() {
+  const router = useRouter();
+
+  useEffect(() => {
+    // Check if the user is logged in (e.g., from localStorage or context)
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
+    if (!isLoggedIn) {
+      router.push('/login'); // Redirect to login if not logged in
+    }
+  }, [router]);
+
   return (
     <main>
       <h1>Welcome to the Ecommerce Store</h1>
