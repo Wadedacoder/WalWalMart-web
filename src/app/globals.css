@@ -96,3 +96,51 @@ body {
   padding: 2px 6px;
   font-size: 12px;
 }
+.cart-dropdown {
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  width: 250px;
+}
+
+.cart-dropdown h2 {
+  margin-top: 0;
+}
+
+.cart-dropdown ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 10px;
+}
+
+.cart-dropdown li {
+  padding: 5px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.cart-dropdown li:last-child {
+  border-bottom: none;
+}
+
+.checkout-button {
+  width: 100%;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+}
+
+.checkout-button:hover {
+  background-color: #0056b3;
+}

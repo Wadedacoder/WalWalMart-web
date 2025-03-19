@@ -1,5 +1,5 @@
 // src/app/context/CartContext.js
-'use client'; // Mark this as a Client Component
+'use client';
 
 import { createContext, useState } from 'react';
 
@@ -12,8 +12,12 @@ export const CartProvider = ({ children }) => {
     setCart([...cart, product]);
   };
 
+  const clearCart = () => {
+    setCart([]);
+  };
+
   return (
-    <CartContext.Provider value={{ cart, addToCart }}>
+    <CartContext.Provider value={{ cart, addToCart, clearCart }}>
       {children}
     </CartContext.Provider>
   );
